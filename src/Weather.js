@@ -1,7 +1,11 @@
 import React from 'react'
 
-export default () => (
+export default (props) => (
   <div>
-    This is the weather you searched.
+    <ul>
+      <li>{props.currently}</li>
+      <li>{props.description}</li>
+      <li>{props.cityName}</li>
+    </ul>
   </div>
 )

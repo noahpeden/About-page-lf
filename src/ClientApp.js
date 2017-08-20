@@ -6,6 +6,7 @@ import fire from './firebase';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Searches from './Searches';
+import Weather from './Weather'
 
 class ClientApp extends Component {
 	constructor(props) {
@@ -39,13 +40,22 @@ class ClientApp extends Component {
 		/* Send the message to Firebase */
 		fire.database().ref('searches').push(this.inputEl.value);
 		this.inputEl.value = ''; // <- clear the input
-	}
+  }
+  
+//   current conditions
+// brief description of weather
+// city name
+// time of the search
 
 	getWeather(city) {
 		const APIKey = '2eacf5cd8e08d4adc524186577921400';
-		const URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APIKey}`;
+		const URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APIKey}&units=imperial`;
     axios.get(URL).then(response => {
-      console.log(response.data.name)
+      this.setState({
+        currently: response.data.main.temp,
+        description: response.data.weather[0].description,
+        cityName: response.data.name,
+      })
     });
 	}
 
@@ -69,6 +79,7 @@ class ClientApp extends Component {
 					<input type="submit" />
 				</form>
 				<Link to="/history">See History</Link>
+        <Weather currently={this.state.currently} description={this.state.description} cityName={this.state.cityName}/>
 			</div>
 		);
 	}
