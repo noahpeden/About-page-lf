@@ -1,25 +1,27 @@
 import React, { Component } from 'react';
 import fire from './firebase';
 
-
 export default class Searches extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			searches: []
-		};
+    };
+    this.searches = []
 	}
-
+  
 	componentWillMount() {
-		let searchesRef = fire
-			.database()
-			.ref('searches')
-			.orderByKey()
-			.limitToLast(100);
+    let searchesRef = fire
+      .database()
+      .ref('searches')
+      .orderByKey()
+      .limitToLast(100);
 		searchesRef.on('child_added', snapshot => {
-			let search = { text: snapshot.val(), id: snapshot.key };
-			this.setState({ searches: [search].concat(this.state.searches) });
-		});
+      let search = { text: snapshot.val(), id: snapshot.key };
+      this.searches.push(search)
+			this.setState({ searches: this.searches });
+    });
+    // anything?
 	}
 
 	render() {
