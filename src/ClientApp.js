@@ -12,7 +12,7 @@ class ClientApp extends Component {
 		super(props);
 		this.state = {
       searches: [],
-      input: '',
+      name: '',
       city: ''
 		};
 		this.addSearch = this.addSearch.bind(this);
@@ -33,26 +33,25 @@ class ClientApp extends Component {
 	}
 
 	addSearch(e) {
-    this.setState({
-      city: this.state.input
-    })
+    console.log(this.state.name)
+    console.log(this.state.city)
+    this.getWeather(this.state.name)
 		e.preventDefault(); // <- prevent form submit from reloading the page
 		/* Send the message to Firebase */
 		fire.database().ref('searches').push(this.inputEl.value);
-    this.getWeather()
 		this.inputEl.value = ''; // <- clear the input
 	}
 
 	getWeather(city) {
-    const name = this.state.city
-		const APIKey = '2eacf5cd8e08d4adc524186577921400';
-		const URL = `http://api.openweathermap.org/data/2.5/weather?q=${name}&APPID=${APIKey}`;
+    const APIKey = '2eacf5cd8e08d4adc524186577921400';
+    console.log(city)
+		const URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APIKey}`;
 		axios.get(URL).then(response => console.log(response));
   }
   
   handleChange(event){
     this.setState({
-      input: event.target.value
+      name: event.target.value
     })
   }
 
@@ -69,6 +68,7 @@ class ClientApp extends Component {
 					/>
 					<input type="submit" />
 				</form>
+        
 				<Link to="/history">See History</Link>
 			</div>
 		);
