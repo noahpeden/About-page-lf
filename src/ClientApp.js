@@ -6,7 +6,7 @@ import fire from './firebase';
 import { Link } from 'react-router-dom';
 import Header from './Header';
 import Searches from './Searches';
-import Weather from './Weather'
+import Weather from './Weather';
 
 class ClientApp extends Component {
 	constructor(props) {
@@ -14,7 +14,8 @@ class ClientApp extends Component {
 		this.state = {
 			searches: [],
 			name: '',
-			city: ''
+			city: '',
+			timeStamp: ''
 		};
 		this.addSearch = this.addSearch.bind(this);
 		this.getWeather = this.getWeather.bind(this);
@@ -22,10 +23,7 @@ class ClientApp extends Component {
 	}
 
 	componentWillMount() {
-		let searchesRef = fire
-			.database()
-			.ref('searches')
-			.orderByKey()
+		let searchesRef = fire.database().ref('searches').orderByKey();
 		searchesRef.on('child_added', snapshot => {
 			let search = { text: snapshot.val(), id: snapshot.key };
 			this.setState({ searches: [search].concat(this.state.searches) });
@@ -40,23 +38,38 @@ class ClientApp extends Component {
 		/* Send the message to Firebase */
 		fire.database().ref('searches').push(this.inputEl.value);
 		this.inputEl.value = ''; // <- clear the input
-  }
-  
-//   current conditions
-// brief description of weather
-// city name
-// time of the search
+	}
+
+	//   current conditions
+	// brief description of weather
+	// city name
+	// time of the search
 
 	getWeather(city) {
+    let date = new Date()
+		let str =
+			date.getFullYear() +
+			'-' +
+			(date.getMonth() + 1) +
+			'-' +
+			date.getDate() +
+			' ' +
+			date.getHours() +
+			':' +
+			date.getMinutes() +
+			':' +
+			date.getSeconds();
 		const APIKey = '2eacf5cd8e08d4adc524186577921400';
 		const URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APIKey}&units=imperial`;
-    axios.get(URL).then(response => {
-      this.setState({
-        currently: response.data.main.temp,
-        description: response.data.weather[0].description,
-        cityName: response.data.name,
-      })
-    });
+		axios.get(URL).then(response => {
+			this.setState({
+				currently: response.data.main.temp,
+				description: response.data.weather[0].description,
+				cityName: response.data.name,
+				timeStamp: str
+			});
+		});
+		console.log(this.state.timeStamp);
 	}
 
 	handleChange(event) {
@@ -79,7 +92,12 @@ class ClientApp extends Component {
 					<input type="submit" />
 				</form>
 				<Link to="/history">See History</Link>
-        <Weather currently={this.state.currently} description={this.state.description} cityName={this.state.cityName}/>
+				<Weather
+					currently={this.state.currently}
+					description={this.state.description}
+					cityName={this.state.cityName}
+					timeStamp={this.state.timeStamp}
+				/>
 			</div>
 		);
 	}
