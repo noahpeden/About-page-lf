@@ -21,7 +21,6 @@ export default class Searches extends Component {
       this.searches.push(search)
 			this.setState({ searches: this.searches });
     });
-    // anything?
 	}
 
 	render() {
