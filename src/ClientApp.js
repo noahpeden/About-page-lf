@@ -12,6 +12,8 @@ class ClientApp extends Component {
 			searches: [],
 			name: '',
 			city: '',
+			currently: '',
+			description: '',
 			timeStamp: ''
 		};
 		this.addSearch = this.addSearch.bind(this);
@@ -22,10 +24,8 @@ class ClientApp extends Component {
 	}
 
 	addSearch(e) {
-		if (e.key == 'Enter') {
+		if (e.key === 'Enter') {
 			this.getWeather(this.inputEl.value);
-			e.preventDefault();
-			fire.database().ref('searches').push(this.inputEl.value);
 			this.inputEl.value = '';
 		}
 	}
@@ -51,6 +51,15 @@ class ClientApp extends Component {
 					cityName: `Location: ${response.name}`,
 					timeStamp: str
 				});
+			})
+			.then(response => {
+        const search = {
+          cityName: this.state.cityName,
+          timeStamp: this.state.timeStamp,
+          description: this.state.description,
+          currently: this.state.currently
+        }
+				fire.database().ref('search').push(search);
 			});
 	}
 
