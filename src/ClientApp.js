@@ -20,9 +20,14 @@ class ClientApp extends Component {
 		};
 		this.addSearch = this.addSearch.bind(this);
 		this.getWeather = this.getWeather.bind(this);
-		this.handleChange = this.handleChange.bind(this);
 		this.getRandom = this.getRandom.bind(this);
-	}
+		this.fetchData = this.fetchData.bind(this);
+		this.getCurrentLocation = this.getCurrentLocation.bind(this);
+  }
+  
+  componentDidMount(){
+
+  }
 
 	componentWillMount() {
 		let searchesRef = fire.database().ref('searches').orderByKey();
@@ -33,18 +38,22 @@ class ClientApp extends Component {
 	}
 
 	addSearch(e) {
-		this.getWeather(this.state.name);
+		this.getWeather(this.inputEl.value);
 		e.preventDefault();
 		fire.database().ref('searches').push(this.inputEl.value);
 		this.inputEl.value = '';
 	}
 
 	getWeather(city) {
+		const APIKey = '2eacf5cd8e08d4adc524186577921400';
+		const URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APIKey}&units=imperial`;
+		this.fetchData(URL);
+	}
+
+	fetchData(URL) {
 		let date = new Date();
 		let str = `${date.getFullYear()}-${date.getMonth() +
 			1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
-		const APIKey = '2eacf5cd8e08d4adc524186577921400';
-		const URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APIKey}&units=imperial`;
 		fetch(URL)
 			.then(response => {
 				return response.json();
@@ -64,16 +73,20 @@ class ClientApp extends Component {
 		this.getWeather(city);
 	}
 
-	handleChange(event) {
-		this.setState({
-			name: event.target.value
-		});
+	getCurrentLocation() {
+		const APIKey = '2eacf5cd8e08d4adc524186577921400';
+		navigator.geolocation.getCurrentPosition(position => {
+      const URL = `http://api.openweathermap.org/data/2.5/weather?lat=${position
+      .coords.latitude}&lon=${position.coords
+				.longitude}&APPID=${APIKey}&units=imperial`;
+        this.fetchData(URL);
+      });
 	}
 
 	render() {
 		return (
 			<div className="App">
-				<Header getRandom={this.getRandom} />
+				<Header getRandom={this.getRandom} getCurrent={this.getCurrentLocation} />
 				<form onSubmit={this.addSearch}>
 					<input
 						type="text"
