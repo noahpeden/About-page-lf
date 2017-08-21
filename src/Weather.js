@@ -6,6 +6,7 @@ export default (props) => (
       <li>{props.currently}</li>
       <li>{props.description}</li>
       <li>{props.cityName}</li>
+      <li>{props.timeStamp}</li>
     </ul>
   </div>
 )
