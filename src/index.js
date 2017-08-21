@@ -11,7 +11,7 @@ const App = () =>
 		<div className="app">
 			<Switch>
 				<Route exact path="/" component={ClientApp} />
-				<Route path="/history" component={Searches} />
+				<Route path="/searches" component={Searches} />
 			</Switch>
 		</div>
 	</BrowserRouter>;

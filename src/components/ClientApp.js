@@ -12,7 +12,8 @@ class ClientApp extends Component {
 		city: '',
 		currently: '',
 		description: '',
-		timeStamp: ''
+		timeStamp: '',
+		loading: false
 	};
 
 	addSearch = e => {
@@ -52,6 +53,11 @@ class ClientApp extends Component {
 					currently: this.state.currently
 				};
 				fire.database().ref('search').push(search);
+			})
+			.then(response => {
+				this.setState({
+					loading: false
+				});
 			});
 	};
 
@@ -61,6 +67,9 @@ class ClientApp extends Component {
 	};
 
 	getCurrentLocation = () => {
+		this.setState({
+			loading: true
+		});
 		const APIKey = '2eacf5cd8e08d4adc524186577921400';
 		navigator.geolocation.getCurrentPosition(position => {
 			const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${position
@@ -95,19 +104,6 @@ class ClientApp extends Component {
 				border-bottom-width: 1px;
 				background-color: transparent;
 			}
-			button {
-				background: none;
-				border: none;
-				border-radius: 4%;
-				outline: none;
-				color: white;
-				font-size: 20px;
-			}
-			button:hover {
-				background: white;
-				color: black;
-				cursor: pointer;
-			}
 			input::placeholder {
 				color: white;
 			}
@@ -116,6 +112,11 @@ class ClientApp extends Component {
 			}
 			input:focus:-moz-placeholder {
 				color: transparent;
+			}
+			.loading {
+        margin-top: 10px;
+        text-align: center;
+				font-size: 30px;
 			}
 		`;
 		return (
@@ -133,12 +134,15 @@ class ClientApp extends Component {
 						placeholder="Search a city for the current weather"
 						ref={el => (this.inputEl = el)}
 					/>
-					<Weather
-						currently={this.state.currently}
-						description={this.state.description}
-						cityName={this.state.cityName}
-						timeStamp={this.state.timeStamp}
-					/>
+					<br />
+					{this.state.loading
+						? <div className="loading">Loading...</div>
+						: <Weather
+								currently={this.state.currently}
+								description={this.state.description}
+								cityName={this.state.cityName}
+								timeStamp={this.state.timeStamp}
+							/>}
 				</div>
 			</Wrapper>
 		);

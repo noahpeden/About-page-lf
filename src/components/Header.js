@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+
+
 const Wrapper = styled.div`
 	margin-top: 50px;
 	margin-bottom: 40%;
@@ -22,9 +24,9 @@ const Wrapper = styled.div`
 
 export default props =>
 	<Wrapper>
-		<Link style={{ textDecoration: 'none', color: 'white' }} to="/history">
+		<Link style={{ textDecoration: 'none', color: 'white' }} to="/searches">
 			<div>PAST SEARCHES</div>
 		</Link>
 		<a onClick={props.getRandom}>RANDOM</a>
 		<a onClick={props.getCurrent}>YOUR LOCATION</a>
-	</Wrapper>;
+	</Wrapper>
