@@ -1,6 +1,6 @@
 This project is a weather app made for DagonIT using the Open Weather Map API, create react app, and Firebase as a quick, prototyping database. 
 
-**Live URL:** [https://dagon-weather.surge.sh]()
+**Live URL:** [https://dagon-weather.surge.sh](https://dagon-weather.surge.sh)
 
 There are several **main features**.
 
