@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import './index.css';
-import ClientApp from './ClientApp';
-import Searches from './Searches';
+import ClientApp from './components/ClientApp';
+import Searches from './components/Searches';
 import registerServiceWorker from './registerServiceWorker';
 
 const App = () =>
