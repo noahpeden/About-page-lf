@@ -22,10 +22,12 @@ class ClientApp extends Component {
 	}
 
 	addSearch(e) {
-		this.getWeather(this.inputEl.value);
-		e.preventDefault();
-		fire.database().ref('searches').push(this.inputEl.value);
-		this.inputEl.value = '';
+		if (e.key == 'Enter') {
+			this.getWeather(this.inputEl.value);
+			e.preventDefault();
+			fire.database().ref('searches').push(this.inputEl.value);
+			this.inputEl.value = '';
+		}
 	}
 
 	getWeather(city) {
@@ -44,9 +46,9 @@ class ClientApp extends Component {
 			})
 			.then(response => {
 				this.setState({
-					currently: response.main.temp,
-					description: response.weather[0].description,
-					cityName: response.name,
+					currently: `Currently: ${response.main.temp}`,
+					description: `Description: ${response.weather[0].description}`,
+					cityName: `Location: ${response.name}`,
 					timeStamp: str
 				});
 			});
@@ -69,21 +71,23 @@ class ClientApp extends Component {
 
 	render() {
 		const Wrapper = styled.div`
-			::-webkit-input-placeholder {
-				/* Chrome/Opera/Safari */
-				color: white;
-			}
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			color: white;
 			h1 {
 				color: white;
 				font-size: 40px;
-				position: absolute;
-				text-align: center;
-				top: 30%;
 			}
-			text-align: center;
+			input,
+			select,
+			textarea {
+				color: white;
+			}
 			input {
 				width: 315px;
-				margin: 10px;
+				margin-left: 50px;
+				margin-top: 50px;
 				font-size: 20px;
 				outline: none;
 				border: 0px solid white;
@@ -103,6 +107,9 @@ class ClientApp extends Component {
 				color: black;
 				cursor: pointer;
 			}
+			input::placeholder {
+				color: white;
+			}
 			input:focus::-webkit-input-placeholder {
 				color: transparent;
 			}
@@ -112,19 +119,19 @@ class ClientApp extends Component {
 		`;
 		return (
 			<Wrapper>
-				<h1>DAGON WEATHER APP</h1>
 				<div className="App">
 					<Header
 						getRandom={this.getRandom}
 						getCurrent={this.getCurrentLocation}
 					/>
+					<h1>DAGON WEATHER APP</h1>
 					<input
+						onKeyPress={this.addSearch}
 						type="text"
 						onChange={this.handleChange}
 						placeholder="Search a city for the current weather"
 						ref={el => (this.inputEl = el)}
 					/>
-					<button onClick={this.addSearch}>SEARCH</button>
 					<Weather
 						currently={this.state.currently}
 						description={this.state.description}
