@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import fire from '../firebase';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default class Searches extends Component {
-  state = {
-    searches: []
-  };
-  history = [];
+	state = {
+		searches: []
+	};
+	history = [];
 
 	componentWillMount() {
 		let searchesRef = fire
@@ -22,8 +23,9 @@ export default class Searches extends Component {
 				timeStamp: searches.timeStamp,
 				description: searches.description,
 				cityName: searches.cityName
-			});
-			this.setState({ searches: this.history });
+      });
+      
+      this.setState({ searches: this.history });
 		});
 	}
 
@@ -36,10 +38,21 @@ export default class Searches extends Component {
 			text-align: center;
 			ul {
 				margin: 10px;
-			}
+      }
+      .home {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+      .home:hover {
+        text-decoration: underline;
+      }
 		`;
 		return (
 			<Wrapper>
+				<Link style={{ textDecoration: 'none', color: 'white' }} to="/">
+					<div className="home">HOME</div>
+				</Link>
 				<div className="searches">
 					<h1>PAST SEARCHES</h1>
 					{/* Render the list of searches */
