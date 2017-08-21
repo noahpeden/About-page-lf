@@ -24,7 +24,7 @@ class ClientApp extends Component {
 
 	getWeather = city => {
 		const APIKey = '2eacf5cd8e08d4adc524186577921400';
-		const URL = `http://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APIKey}&units=imperial`;
+		const URL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&APPID=${APIKey}&units=imperial`;
 		this.fetchData(URL);
 	};
 
@@ -63,7 +63,7 @@ class ClientApp extends Component {
 	getCurrentLocation = () => {
 		const APIKey = '2eacf5cd8e08d4adc524186577921400';
 		navigator.geolocation.getCurrentPosition(position => {
-			const URL = `http://api.openweathermap.org/data/2.5/weather?lat=${position
+			const URL = `https://api.openweathermap.org/data/2.5/weather?lat=${position
 				.coords.latitude}&lon=${position.coords
 				.longitude}&APPID=${APIKey}&units=imperial`;
 			this.fetchData(URL);
