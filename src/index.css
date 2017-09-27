@@ -134,9 +134,16 @@ li {
 }
 
 html {
-	font-family: sans-serif;
-	background-image: url("./assets/background.jpg");
-	background-attachment: fixed;
-	background-repeat: no-repeat;
-	background-size: cover;
+    background-color: rgb(248,249,251)
+}
+
+.hero-image {
+    background-image: url('./assets/about-hero-image.png');
+}
+
+.prepare-image {
+    background-image: url('./assets/prepare-image.png');
+}
+.legacy-image {
+    background-image: url('./assets/legacy-image.png');
 }
