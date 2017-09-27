@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import Letters from './letters'
+import Legacy from './legacy'
+import HowItWorks from './HowItWorks'
+import FAQ from './FAQ'
 
 class ClientApp extends Component {
 	state = {}
@@ -65,7 +69,7 @@ class ClientApp extends Component {
 				font-family: avenir-heavy;
 			}
 			.intro-text {
-                text-align: left;
+				text-align: left;
 				width: 33%;
 				margin-left: 5%;
 			}
@@ -77,11 +81,11 @@ class ClientApp extends Component {
 				background-repeat: no-repeat;
 				width: 45%;
 				height: 700px;
-                background-position: center;
-                padding-left: 0;
+				background-position: center;
+				padding-left: 0;
 			}
 			.legacy {
-                padding: 4%;
+				padding: 4%;
 				display: flex;
 				height: 22%;
 				width: 100%;
@@ -123,6 +127,18 @@ class ClientApp extends Component {
 				height: 700px;
 				background-position: center;
 			}
+			.info {
+				display: flex;
+				flex-direction: row;
+			}
+
+			.how-it-works,
+			.faq {
+				line-height: 1.58;
+				font-size: 20px;
+				padding: 5%;
+				width: 40%;
+			}
 		`
 
 		return (
@@ -135,44 +151,15 @@ class ClientApp extends Component {
 						Create meaningful goodbyes with Last Farewells.
 					</h1>
 				</div>
-
-				<div className="prepare">
-					<div className="prepare-image" />
-					<div className="intro-text">
-						<h1 className="prepare-title">Your loved ones, at peace.</h1>
-						<div>
-							Welcome to Last Farewells. A platform dedicated to making sure
-							that your words are passed on to those you love once you pass
-							away.
-							<div className="spacing" />
-							With our easy to use letter creator, you can write letters to
-							friends or family and decide when they'll be delivered. For
-							example, a father could write a letter that will be delivered to
-							his daughter on her wedding day.
-							<div className="spacing" />
-							Never worry again about your friends or family being without you,
-							as your thoughts will be with them forever.
-						</div>
-						<button>Write your Last Letter</button>
+				<Letters />
+				<Legacy />
+				<div className="info">
+					<div className="how-it-works">
+                        <HowItWorks/>
 					</div>
-				</div>
-				<div className="legacy">
-					<div className="legacy-text">
-						<h1 className="prepare-title">Your legacy matters.</h1>
-						<div>
-							Last Farewells is free for everyone and is the best place to
-							create your legacy. Our Memorial Page builder is easy to use and
-							let's you write your life's story from beginning to end.
-							<div className="spacing" />
-							Write a Self-Obituary, create a Life Timeline, upload Photos, make
-							a Bucket List, and write down your Last Wishes for your shareable
-							Memorial Page that will be made public once you pass away.
-                            <div className="spacing"/>
-                            With your Memorial Page, you will never have to worry how you will be remembered ever again, as you'll be in charge of the legacy you leave behind.
-						</div>
-                        <button>Create Your Memorial Page</button>
+					<div className="faq">
+                    <FAQ/>
 					</div>
-					<div className="legacy-image" />
 				</div>
 			</Wrapper>
 		)
