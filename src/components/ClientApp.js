@@ -31,7 +31,7 @@ class ClientApp extends Component {
 				margin-bottom: 50px;
 				position: absolute;
 				margin-left: auto;
-				margin-right: auto;
+				margin-right: auto; 
 				left: 15%;
 				bottom: 20%;
 				text-align: left;
@@ -44,7 +44,7 @@ class ClientApp extends Component {
 				background-size: 100%;
 				background-repeat: no-repeat;
 				width: 100%;
-				height: 600px;
+				height: 100vh;
 				background-position: center;
 				position: relative;
 			}
@@ -128,6 +128,7 @@ class ClientApp extends Component {
 				background-position: center;
 			}
 			.info {
+                background: white;
 				display: flex;
 				flex-direction: row;
 			}
