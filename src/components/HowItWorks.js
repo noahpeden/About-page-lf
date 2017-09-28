@@ -3,8 +3,11 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
 	a {
-		text-decoration: underline;
-		color: #4299c5;
+		text-decoration: none;
+		color: white;
+	}
+	a:hover {
+		color: #13d2c5;
 	}
 
 	h1 {
@@ -50,7 +53,7 @@ const Wrapper = styled.div`
 		}
 
 		strong {
-			font-family: $avenir-bold;
+			font-family: avenir-heavy;
 			display: flex;
 			font-size: 21px;
 			width: 35px;
@@ -72,59 +75,64 @@ const Wrapper = styled.div`
 export default () => (
 	<Wrapper>
 		<div className="how-it-works-page">
-			<h1>How It Works</h1>
+			<h1>Getting Started</h1>
 			<section className="create-account">
 				<strong>1</strong>
 				<h2>Create a Last Farewells Account</h2>
 				<p>
-					Creating an account is free, effortless, and gives you peace of mind. Save your loved ones from having unresolved anguish.
+					Creating an account is free, effortless, and gives you peace of mind.
+					Save your loved ones from having unresolved anguish.
 				</p>
-					<button href="/signup">Sign Up Today</button>
+				<a href="/signup">
+					<button>Sign Up Today</button>
+				</a>
 			</section>
 
 			<section className="write-letters">
 				<strong>2</strong>
-				<h2>Write your Last Letters</h2>
+				<h2>Write Your Last Letters</h2>
 				<p>
 					Write letters to friends and family to be delivered after you are
 					gone. Describe what your relationship meant to you, tell them
-					something you always wanted too, or just simply let them know you love
-					and will miss them. This can be a difficult task but one that will
-					leave a last impression on the recipient. Letters can be scheduled to
-					be sent immediately upon confirmation or scheduled to be sent at a
-					designated time or event.{' '}
-					<a href="/letters/create">Try writing your first letter</a> with
-					either guided or free write options.
+					something you always wanted too, or simply let them know you love and
+					miss them. Letters can be scheduled to be sent immediately upon your
+					passing or scheduled to be sent at a designated date or event.{' '}
 				</p>
+				<a href="/letters/create">
+					<button>Write a Last Letter</button>
+				</a>
 			</section>
 
 			<section>
 				<strong>3</strong>
-				<h2>Build a MyLegacy Page</h2>
+				<h2>Create a Memorial Page</h2>
 				<p>
-					MyLegacy is a lasting memorial page that is published as a page to be
-					shared, celebrated, or a place of reflection after confirmation of a
-					passing. Write your own obituary to tell your story, organize rich
-					photo and video galleries, add a timeline of your most memorable
-					events, or designating a charitable cause in your name.{' '}
-					<a href="/my-legacy">Start building a MyLegacy page</a> will help
-					establish your place in time and provide an memorial of your life.
+					A Memorial Page is a place to comemorate and celebrate your life,
+					where you can be in charge of the story and legacy you leave behind.
+					Write your Self-Obituary, create a Life Timeline of special events that people can scroll
+					through, or make a Bucket List that your friends can carry out after your
+					passing. Your Memorial Page is just that, a memorial to your life that
+					you're in charge of.
 				</p>
+				<a href="/my-legacy">
+					<button>Build a Memorial Page</button>
+				</a>{' '}
 			</section>
 
 			<section>
 				<strong>4</strong>
-				<h2>Designate Legacy Contacts</h2>
+				<h2>Choose Your Last Contacts</h2>
 				<p>
-					You will need to designate up to 5 people to act as your Legacy
-					Contacts after you pass. These individuals will be responsible for
-					confirming your passing, which will activate your Last Farewell’s
-					account. Once two legacy contacts have confirmed your passing, your
-					letters with be sent and scheduled and your MyLegacy page will be
-					published. Inviting and managing your Legacy Contacts is easy and
-					seamless through the Last Farewell’s system, start by{' '}
-					<a href="/trustees">adding your Legacy Contacts now</a>.
+					Choose up to 5 people to be your Last Contacts. These individuals will
+					be responsible for confirming your death with Last Farewells, which
+					will start setting in motion the items you've outlined in your Last
+					Farewells account, like sending your Last Letters and making your
+					Memorial Page available to the public. Inviting and managing your Last
+					Contacts is easy and seamless with Last Farewells' account dashboard.{' '}
 				</p>
+				<a href="/legacy-contacts">
+					<button>Add Your Last Contacts</button>
+				</a>
 			</section>
 		</div>
 	</Wrapper>

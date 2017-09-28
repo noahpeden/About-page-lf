@@ -91,13 +91,44 @@ export default class FAQ extends React.Component {
 				<section className="question">
 					<h2>How do I schedule a letter to be sent on a specific date?</h2>
 					<p>
-						Before you start writing, we ask you when you want to send your letter. You get to choose between it being sent when you pass away, on a special event like a birthday or graduation, or on a specific date that you choose.
+						Before you start writing, we ask you when you want to send your
+						letter. You get to choose between it being sent when you pass away,
+						on a special event like a birthday or graduation, or on a specific
+						date that you choose.
 					</p>
 				</section>
 				<section className="question">
 					<h2>What is a Last Contact?</h2>
 					<p>
-						The Last Contacts are the people (up to five) that you choose to be responsible for notifying Last Farewells of your death. As soon as three of your Last Contacts have confirmed your passing, Last Farewells will start setting in motion the events you've outlined.
+						The Last Contacts are the people (up to five) that you choose to be
+						responsible for notifying Last Farewells of your death. As soon as
+						three of your Last Contacts have confirmed your passing, Last
+						Farewells will start setting in motion the events you've outlined.
+					</p>
+				</section>
+				<section className="question">
+					<h2>What if I want to change legacy contacts?</h2>
+					<p>
+						You can change legacy contacts at any time through your dashboard.
+						You must have a minimum of three legacy contacts at any time.
+					</p>
+				</section>
+				<section className="question">
+					<h2>What if I don’t know how to write a self-obituary?</h2>
+					<p>
+						Feel free to check out our blog post on how to write your own obituary. It contains several helpful steps and resources that can help you as you write your Self-Obituary. Otherwise checkout our list of great Self-Obituaries that can serve as inspiration.
+					</p>
+				</section>
+				<section className="question">
+					<h2>What if I don’t know how to write a self-obituary?</h2>
+					<p>
+						Feel free to check out our blog post on how to write your own obituary. It contains several helpful steps and resources that can help you as you write your Self-Obituary. Otherwise checkout our list of great Self-Obituaries that can serve as inspiration.
+					</p>
+				</section>
+				<section className="question">
+					<h2>Can I update my Memorial page?</h2>
+					<p>
+						Yes. Your Memorial Page can be edited at any time. It will not be made public until
 					</p>
 				</section>
 			</Wrapper>
